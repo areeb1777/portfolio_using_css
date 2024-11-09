@@ -1,0 +1,27 @@
+.theme-toggle-button {
+  background-color: #e2e8f0;
+  color: #1a202c;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-button.dark {
+  background-color: #4a5568;
+  color: #edf2f7;
+}
+
+.theme-toggle-button:hover {
+  background-color: #a0aec0;
+}
+
+.theme-toggle-button.dark:hover {
+  background-color: #718096;
+}
+
+.theme-toggle-text {
+  margin-left: 0.5rem;
+}

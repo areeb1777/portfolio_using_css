@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
+import '../Styles/Contact.css';
 
 type FormData = {
   name: string;
@@ -9,7 +10,11 @@ type FormData = {
   message: string;
 };
 
-function ContactForm() {
+type ContactFormProps = {
+  theme: string;
+};
+
+function ContactForm({ theme }: ContactFormProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -60,24 +65,23 @@ function ContactForm() {
   return isClient ? (
     <section
       id="contact"
-      className="p-8 max-w-lg mx-auto text-center cursor-pointer bg-gray-100 dark:bg-gray-800 text-lightText dark:text-darkText transition-colors duration-300"
+      className={`contact-section ${theme === 'dark' ? 'dark' : 'light'}`}
     >
-      <h2 className="text-3xl font-bold mb-4 cursor-pointer hover:text-orange-400">
+      <h2 className="contact-heading">
         Contact Me
       </h2>
 
-      <p>
-        {" "}
+      <p className="contact-text">
         If you&apos;d like to connect, feel free to reach out via my social
         media links or send me a message using the form below:
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+      <form onSubmit={handleSubmit} className="contact-form">
         <input
           type="text"
           name="name"
           placeholder="Your Name"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white"
+          className={`contact-form-item ${theme === 'dark' ? 'dark' : ''}`}
           value={formData.name}
           onChange={handleChange}
           required
@@ -86,7 +90,7 @@ function ContactForm() {
           type="email"
           name="email"
           placeholder="Your Email"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white"
+          className={`contact-form-item ${theme === 'dark' ? 'dark' : ''}`}
           value={formData.email}
           onChange={handleChange}
           required
@@ -94,7 +98,7 @@ function ContactForm() {
         <textarea
           name="message"
           placeholder="Your Message"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white"
+          className={`contact-form-item ${theme === 'dark' ? 'dark' : ''}`}
           rows={4}
           value={formData.message}
           onChange={handleChange}
@@ -102,14 +106,14 @@ function ContactForm() {
         />
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600"
+          className="contact-form-button"
         >
           Send Message
         </button>
       </form>
 
       {submitted && (
-        <p className="mt-4 text-green-500">Thank you for your message!</p>
+        <p className="submitted-message">Thank you for your message!</p>
       )}
     </section>
   ) : (

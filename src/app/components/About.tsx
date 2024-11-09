@@ -1,17 +1,22 @@
-"use client";
+'use client';
 
 import React from "react";
+import '../Styles/About.css';
 
-const About: React.FC = () => {
+type AboutProps = {
+  theme: string;
+};
+
+const About: React.FC<AboutProps> = ({ theme }) => {
   return (
     <section
       id="about"
-      className="p-8 max-w-4xl mx-auto text-center bg-lightBackground dark:bg-darkBackground text-lightText dark:text-darkText transition-colors duration-300"
+      className={`about-section ${theme === 'dark' ? 'dark' : 'light'}`}
     >
-      <h2 className="text-3xl font-bold mb-4 cursor-pointer hover:text-orange-400">
+      <h2 className="about-heading">
         About Me
       </h2>
-      <p className="text-lg text-justify">
+      <p className="about-paragraph">
         I am a 21-year-old student of the Governor Sindh Kamran Khan Tessori
         Initiative for Artificial Intelligence, Web 3.0 & Metaverse, with
         expertise in modern technologies including HTML, CSS, JavaScript,

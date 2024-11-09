@@ -1,0 +1,84 @@
+.header {
+  background-color: #f7fafc;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: top 0.3s;
+}
+
+.header.dark {
+  background-color: #2d3748;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav .logo {
+  font-size: 1.25rem;
+  font-family: 'Dancing Script', cursive;
+  margin-left: 1rem;
+}
+
+.nav .link,
+.nav .button {
+  color: #1a202c;
+  margin-right: 1.25rem;
+}
+
+.nav .link:hover,
+.nav .button:hover {
+  color: #000;
+}
+
+.nav .link.dark,
+.nav .button.dark {
+  color: #cbd5e0;
+}
+
+.nav .link.dark:hover,
+.nav .button.dark:hover {
+  color: #fff;
+}
+
+.nav .mobile-menu {
+  display: none;
+}
+
+.nav .mobile-menu.open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  background-color: #f7fafc;
+  padding: 1rem 0;
+}
+
+.nav .mobile-menu.open.dark {
+  background-color: #2d3748;
+}
+
+.nav .mobile-button {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .nav .desktop-menu {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .nav .mobile-menu,
+  .nav .mobile-button {
+    display: none;
+  }
+}

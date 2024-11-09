@@ -1,0 +1,32 @@
+.about-section {
+  padding: 2rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.about-section.light {
+  color: #1a202c;
+}
+
+.about-section.dark {
+  color: #edf2f7;
+}
+
+.about-heading {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.about-heading:hover {
+  color: #f6ad55;
+}
+
+.about-paragraph {
+  font-size: 1.125rem;
+  text-align: justify;
+}

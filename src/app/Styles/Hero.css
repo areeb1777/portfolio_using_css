@@ -1,0 +1,90 @@
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(to right, #cfe0fc, #d6b3ff, #f0b3ff);
+}
+
+.hero-section.dark {
+  background: linear-gradient(to right, #2d3748, #1a202c, #000);
+}
+
+.hero-image {
+  margin-bottom: 2rem;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.hero-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.6);
+}
+
+.hero-heading {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-heading-md {
+  font-size: 3.75rem;
+}
+
+.hero-paragraph {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.hero-paragraph-md {
+  font-size: 1.5rem;
+}
+
+.hero-highlight {
+  color: #f59e0b;
+}
+
+.blink {
+  border-right: 2px solid #4a5568;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #4a5568;
+  }
+}
+
+.hero-button {
+  background-color: #4299e1;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.hero-button:hover {
+  background-color: #38a169;
+}
+
+.hero-button-gray {
+  background-color: #a0aec0;
+}
+
+.hero-button-gray:hover {
+  background-color: #4299e1;
+}
+
+.hero-button-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

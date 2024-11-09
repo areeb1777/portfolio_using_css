@@ -1,99 +1,43 @@
-'use client'; // Add this line at the top
+"use client";
 
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
+import "../Styles/Header.css";
 
-const Header = () => {
-  const [theme, setTheme] = useState<string>("dark");
+type HeaderProps = {
+  theme: string;
+  toggleTheme: () => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    let lastScrollTop = 0;
-    const header = document.getElementById("header");
-
-    const onScroll = () => {
-      if (header) {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop) {
-          header.style.top = "-80px";
-        } else {
-          header.style.top = "0";
-        }
-        lastScrollTop = scrollTop;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll);
-
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      document.documentElement.classList.add(storedTheme);
-      setTheme(storedTheme);
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
-  const toggleTheme = () => {
-    if (theme === "light") {
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setTheme("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      localStorage.setItem("theme", "light");
-      setTheme("light");
-    }
-  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   return (
-    <header
-      id="header"
-      className="bg-gray-100 dark:bg-gray-800 p-4 sticky top-0 z-50 transition-top duration-300"
-    >
-      <nav className="container mx-auto flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-xl font-dancingScript text-lightText dark:text-darkText ml-4"
-        >
+    <header id="header" className={`header ${theme === "dark" ? "dark" : ""}`}>
+      <nav className="nav">
+        <Link href="/" className={`logo ${theme === "dark" ? "dark" : ""}`}>
           Areeb Portfolio
         </Link>
-        
-        {/* Dark Mode Toggle Button */}
-        <button
-          onClick={toggleTheme}
-          className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white flex items-center space-x-2 md:hidden"
-        >
-          {theme === "light" ? <FaMoon /> : <FaSun />}
-        </button>
 
-        {/* Hamburger Menu Icon */}
-        <div className="md:hidden flex items-center">
+        <div className="mobile-button md:hidden">
           <button
             onClick={toggleMenu}
-            className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+            className={`button ${theme === "dark" ? "dark" : ""}`}
           >
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
-        
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-5 mr-5">
+
+        <ul className="desktop-menu">
           <li>
             <Link
               href="#about"
-              className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+              className={`link ${theme === "dark" ? "dark" : ""}`}
             >
               About
             </Link>
@@ -101,7 +45,7 @@ const Header = () => {
           <li>
             <Link
               href="#skills"
-              className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+              className={`link ${theme === "dark" ? "dark" : ""}`}
             >
               Skills
             </Link>
@@ -109,7 +53,7 @@ const Header = () => {
           <li>
             <Link
               href="#projects"
-              className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+              className={`link ${theme === "dark" ? "dark" : ""}`}
             >
               Projects
             </Link>
@@ -117,20 +61,32 @@ const Header = () => {
           <li>
             <Link
               href="#contact"
-              className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+              className={`link ${theme === "dark" ? "dark" : ""}`}
             >
               Contact
             </Link>
           </li>
         </ul>
-        
-        {/* Mobile Menu */}
+
+        <button
+          onClick={toggleTheme}
+          className={`button hidden md:flex ${
+            theme === "dark" ? "dark" : ""
+          } ml-auto`}
+        >
+          {theme === "light" ? <FaMoon /> : <FaSun />}
+        </button>
+
         {menuOpen && (
-          <ul className="absolute top-16 left-0 w-full bg-gray-100 dark:bg-gray-800 flex flex-col items-center space-y-4 py-4 md:hidden">
+          <ul
+            className={`mobile-menu ${menuOpen ? "open" : ""} ${
+              theme === "dark" ? "dark" : ""
+            }`}
+          >
             <li>
               <Link
                 href="#about"
-                className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                className={`link ${theme === "dark" ? "dark" : ""}`}
                 onClick={toggleMenu}
               >
                 About
@@ -139,7 +95,7 @@ const Header = () => {
             <li>
               <Link
                 href="#skills"
-                className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                className={`link ${theme === "dark" ? "dark" : ""}`}
                 onClick={toggleMenu}
               >
                 Skills
@@ -148,7 +104,7 @@ const Header = () => {
             <li>
               <Link
                 href="#projects"
-                className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                className={`link ${theme === "dark" ? "dark" : ""}`}
                 onClick={toggleMenu}
               >
                 Projects
@@ -157,22 +113,22 @@ const Header = () => {
             <li>
               <Link
                 href="#contact"
-                className="text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                className={`link ${theme === "dark" ? "dark" : ""}`}
                 onClick={toggleMenu}
               >
                 Contact
               </Link>
             </li>
+            <li>
+              <button
+                onClick={toggleTheme}
+                className={`button ${theme === "dark" ? "dark" : ""}`}
+              >
+                {theme === "light" ? <FaMoon /> : <FaSun />}
+              </button>
+            </li>
           </ul>
         )}
-        
-        {/* Dark Mode Toggle Button for Desktop */}
-        <button
-          onClick={toggleTheme}
-          className="hidden md:flex text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white flex items-center space-x-2"
-        >
-          {theme === "light" ? <FaMoon /> : <FaSun />}
-        </button>
       </nav>
     </header>
   );
